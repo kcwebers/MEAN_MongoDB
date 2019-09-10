@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/bootstrap.css">
+
+    <title>Das Quotes</title>
+</head>
+<body>
+    <div class="container shadow p-3 mb-5 bg-white rounded">
+        <div class="text-center shadow p-3 mb-5 bg-white rounded">
+            <h1>This is the quotes page (should display quotes w/info!)</h1>
+            <small>#magical</small>
+        </div>
+        <% for(var i = 0 ; i < quotes.length ; i++) {%>
+        <p>
+            <span>"<%= quotes[i].quote%>"</span>
+            <small class="text-info">- <%= quotes[i].quoter%> at <%= quotes[i].createdAt%></small>
+        </p>
+        <% } %>
+
+
+
+    </div>
+</body>
+</html>

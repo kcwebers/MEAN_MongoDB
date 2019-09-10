@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/bootstrap.css">
+
+    <title>Das Crow</title>
+</head>
+<body>
+    <div class="container shadow p-3 mb-5 bg-white rounded">
+        <% for(var i = 0 ; i < crow.length ; i++) { %>
+        <div class="text-center shadow p-3 mb-5 bg-white rounded">
+            <h1>This is <%= crow[i].name%>'s page</h1>
+            <a href='/' class="btn btn-dark mr-2">Home</a>
+            <a href='/crows/edit/<%= crow[i]._id%>' class="btn btn-dark mr-2">Edit</a>
+            <a href='/crows/destroy/<%= crow[i]._id%>' class="btn btn-dark mr-2">Delete</a>
+        </div>
+        <h2 class='text-center'><%= crow[i].about%></h2>
+        <% } %>
+    </div>
+</body>
+</html>

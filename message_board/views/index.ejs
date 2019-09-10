@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/bootstrap.css">
+
+    <title>Das Messages</title>
+</head>
+<body>
+    <div class="container shadow p-3 mb-5 bg-white rounded">
+        <div class="text-center shadow p-3 mb-5 bg-white rounded">
+            <h1>Welcome to the Message Board</h1>
+            <small>It's a board! With Messages</small>
+            <p><small class='text-muted'>#amazing</small></p>
+        </div>
+
+        <form action='/add_post' method='POST'>
+            <div class="form-group">
+              <label for="name">Name:</label>
+                <% if(messages.name) { %>
+                    <% for (var x of messages.name) { %>
+                    <small class="text-danger"><%= x %></small>
+                    <% } %>
+                <% } %>
+              <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name">
+            </div>
+            <div class="form-group">
+              <label for="post">Post:</label>
+                <% if(messages.post) { %>
+                    <% for (var x of messages.post) { %>
+                    <small class="text-danger"><%= x %></small>
+                    <% } %>
+                <% } %>
+              <textarea type="text" rows=5 class="form-control" id="post" name="post" placeholder="What's on you mind..."></textarea>
+            </div>
+            <input type="submit" class="btn btn-info" value="Post It!">
+        </form>
+
+        <h1>This is where the posts should show up</h1>
+
+        <% if(posts.length > 0) { %>
+        <% for(var i = 0 ; i < posts.length ; i++) { %>
+        <div class="shadow p-3 mb-5 rounded bg-dark text-muted">
+          <div class="border border-info pt-3 pb-0 pl-3">
+              <h3 class="text-white">'<%= posts[i].post%>'</h3>
+              <p> <span class="text-info">Posted By: </span><%= posts[i].name%></p>
+            </div>
+          
+        <% if(posts[i].comments.length > 0) { %>
+          <% for(var j = 0 ; j < posts[i].comments.length ; j++) { %>
+          <div class="border border-info pt-3 pb-0 pl-3 mt-2 bg-secondary text-dark">
+            <p class="text-white">"<%= posts[i].comments[j].comment %>"</p>
+            <p>Said by: <span class="text-white"><%= posts[i].comments[j].name %> </span></p>
+          </div>
+          <% } %>
+        <% } %>
+
+        <form action='/add_comment/<%= posts[i]._id%>' method='POST'>
+          <div class="form-group">
+            <label for="name">Name:</label>
+              <% if(messages.name) { %>
+                  <% for (var x of messages.name) { %>
+                  <small class="text-danger"><%= x %></small>
+                  <% } %>
+              <% } %>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name">
+          </div>
+          <div class="form-group">
+            <label for="comment">Comment:</label>
+              <% if(messages.comment) { %>
+                  <% for (var x of messages.comment) { %>
+                  <small class="text-danger"><%= x %></small>
+                  <% } %>
+              <% } %>
+            <textarea type="text" rows=5 class="form-control" id="comment" name="comment" placeholder="What's on you mind..."></textarea>
+          </div>
+          <input type="submit" class="btn btn-info" value="Post It!">
+      </form>
+      </div>
+      <% } %>
+      <% } %>
+
+    </div>
+</body>
+</html>
